@@ -15,7 +15,7 @@ tech_stack: Golang, Postgres, Google Tracing, Google Cloud, Google pubsub, Kiban
 ---
 
 ## Implement features
-I successfully implemented the onboarding flow for our credit **card services**, integrating with several third-party APIs, sending files using FTP, generating contracts from user data and templates provided by the business department, and signing contracts using the digital signature API from FPT Esign. To enable better monitoring of our services, I also exported custom metrics, in addition to the metrics provided by go-telemetry.
+I successfully implemented the onboarding flow for our credit **card services**, integrating with several third-party APIs, sending files using FTP, generating contracts from user data and templates provided by the business department, and signing contracts using the digital signature API from FPT Esign. To enable better monitoring of our services, I also exported custom metrics, in addition to the metrics provided by go-prometheus.
 
 I designed and implemented the onboarding flow for our **Driverlending service**, which involved writing an API to integrate with Be and using JWT for authentication. To ensure efficient database performance, I designed a DB system that indexes the necessary fields for effective query times.
 
