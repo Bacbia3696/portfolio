@@ -4,7 +4,7 @@ order: 1
 img: /assets/vng.jpeg
 img_alt: Iridescent ripples of a bright blue and pink liquid
 description: |
-  We designed a whodunnit-style game to introduce Markdown formatting. Suspense — suspicion — syntax!
+  Manage webserver: Apache, Nginx, setup master-slave Mysql DB
 tags:
   - SystemAdmin
   - Linux
@@ -13,6 +13,9 @@ role: SystemAdmin Fresher
 tech_stack: Bash, Linux, Apache, Nginx, Mysql server
 ---
 
-## Mysql
+## SystemAdmin
 
-I take responsible for proper setup and configure sql server cluster with master and slave architechure
+- Manage webserver: Apache, Nginx
+- Setup master-slave Mysql DB
+- Monitor server resources
+- Automate repetitive tasks with bash script
