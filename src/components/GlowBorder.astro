@@ -1,0 +1,49 @@
+---
+---
+
+<div class="box">
+  <slot />
+</div>
+
+<style>
+  .box {
+    position: relative;
+    color: #fff;
+    background: #151320;
+    font: 700 2rem "Montserrat";
+    line-height: 400px;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 999rem;
+  }
+
+  .box::before,
+  .box::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: calc(100% + 14px);
+    height: calc(100% + 14px);
+    top: -7px;
+    left: -7px;
+    border-radius: 9999px;
+    background: var(--gradient-accent);
+    background-size: 300%;
+    animation: border 12s linear infinite;
+  }
+
+  .box::after {
+    filter: blur(50px);
+  }
+
+  @keyframes border {
+    0%,
+    100% {
+      background-position: 0 0;
+    }
+
+    50% {
+      background-position: 300%;
+    }
+  }
+</style>

@@ -1,0 +1,210 @@
+---
+import { getCollection } from "astro:content";
+
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Component Imports
+import Hero from "../components/Hero.astro";
+import Icon from "../components/Icon.astro";
+import Pill from "../components/Pill.astro";
+
+// Page section components
+import ContactCTA from "../components/ContactCTA.astro";
+import Skills from "../components/Skills.astro";
+import Grid from "../components/Grid.astro";
+import PortfolioPreview from "../components/PortfolioPreview.astro";
+
+const devs = [
+  { img: "/assets/nvim.png", title: "Lazy Nvim" },
+  { img: "/assets/nvim_debug.png", title: "Debug Rust Test" },
+  { img: "/assets/nvim_rest.png", title: "Send REST req" },
+  { img: "/assets/nvim_git.png", title: "Git integeration" },
+  { img: "/assets/nvim_chatgpt.png", title: "ChatGPT integeration" },
+  { img: "/assets/tmux_session.png", title: "Tmux session fzf" },
+  { img: "/assets/fzf_preview.png", title: "Preview file" },
+  { img: "/assets/sql_client.png", title: "Sql client" },
+];
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<BaseLayout>
+  <div class="stack gap-20 lg:gap-48">
+    <div class="wrapper stack gap-8 lg:gap-20">
+      <header class="hero">
+        <Hero
+          title="Hello, my name is Nguyen Thanh Dat"
+          tagline="A full-stack developer with expertise in blockchain technology and system administration,"
+          align="start"
+        >
+          <div class="roles">
+            <Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
+            <!-- <Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill> -->
+            <!-- <Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill> -->
+          </div>
+        </Hero>
+
+        <img
+          alt="Profile image"
+          width="480"
+          height="620"
+          src="https://prompthero.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxtTVRjeFptRXlZUzB3TURSaExUUmpPV010WVdWa015MDRNV0ZtWldFeE5HRXdOekFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--759f9cec9169351ecaa8ab0b02f628bd5b9ef97a/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBPZ2wzWldKd09oUnlaWE5wZW1WZmRHOWZiR2x0YVhSYkIya0NBQWd3T2dwellYWmxjbnNKT2hOemRXSnpZVzF3YkdWZmJXOWtaVWtpQjI5dUJqb0dSVlE2Q25OMGNtbHdWRG9PYVc1MFpYSnNZV05sVkRvTWNYVmhiR2wwZVdsZiIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--935666d13f63ed5aca9daa2416340e3a90b6014e/prompthero-prompt-2ed993373f2.png"
+        />
+      </header>
+
+      <Skills />
+    </div>
+
+    <main class="wrapper stack gap-15 lg:gap-20">
+      <section class="section with-background with-cta">
+        <header class="section-header stack gap-2 lg:gap-4">
+          <h3>Development environment</h3>
+          <p>
+            Join me for a tour of my development environment to see how I
+            optimize my work process and ensure top-quality output. If you find
+            it interesting, you can check out my <a
+              href="https://github.com/Bacbia3696/dotfiles" target="_blank">dotfiles</a
+            >, and my <a target="_blank" href="https://github.com/Bacbia3696/AstroNvim_user"
+              >nvim</a
+            >
+          </p>
+        </header>
+      </section>
+      <Grid variant="offset">
+        {
+          devs.map((d) => (
+            <li>
+              <PortfolioPreview dev={d} />
+            </li>
+          ))
+        }
+      </Grid>
+    </main>
+  </div>
+
+  <ContactCTA />
+</BaseLayout>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .roles {
+    display: none;
+  }
+
+  .hero img {
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 50em) {
+    .hero {
+      display: grid;
+      grid-template-columns: 6fr 4fr;
+      padding-inline: 2.5rem;
+      gap: 3.75rem;
+    }
+
+    .roles {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .hero img {
+      aspect-ratio: 3 / 4;
+      border-radius: 4.5rem;
+      object-fit: cover;
+    }
+  }
+
+  /* ====================================================== */
+
+  .section {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .with-background {
+    position: relative;
+  }
+
+  .with-background::before {
+    --hero-bg: var(--bg-image-subtle-2);
+
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    left: 50%;
+    width: 100vw;
+    aspect-ratio: calc(2.25 / var(--bg-scale));
+    top: 0;
+    transform: translateY(-75%) translateX(-50%);
+    background: url("/assets/backgrounds/noise.png") top center/220px repeat,
+      var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+      var(--gray-999);
+    background-blend-mode: overlay, normal, normal, normal;
+    mix-blend-mode: var(--bg-blend-mode);
+    z-index: -1;
+  }
+
+  .with-background.bg-variant::before {
+    --hero-bg: var(--bg-image-subtle-1);
+  }
+
+  .section-header {
+    justify-self: center;
+    text-align: center;
+    max-width: 50ch;
+    font-size: var(--text-md);
+    color: var(--gray-300);
+  }
+
+  .section-header h3 {
+    font-size: var(--text-2xl);
+  }
+
+  @media (min-width: 50em) {
+    .section {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-areas: "header header header header" "gallery gallery gallery gallery";
+      gap: 5rem;
+    }
+
+    .section.with-cta {
+      grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
+    }
+
+    .section-header {
+      grid-area: header;
+      font-size: var(--text-lg);
+    }
+
+    .section-header h3 {
+      font-size: var(--text-4xl);
+    }
+
+    .with-cta .section-header {
+      justify-self: flex-start;
+      text-align: left;
+    }
+
+    .gallery {
+      grid-area: gallery;
+    }
+
+    .cta {
+      grid-area: cta;
+    }
+  }
+</style>
