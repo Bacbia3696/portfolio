@@ -1,0 +1,11 @@
+name: portfolio
+region: sgp1
+static_sites:
+  - github:
+      branch: main
+      deploy_on_push: true
+      repo: Bacbia3696/portfolio
+    name: astro
+    routes:
+      - path: /
+    build_command: npm run build
